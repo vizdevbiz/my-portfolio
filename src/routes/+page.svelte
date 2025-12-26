@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<h1>Hi! It's VizDev Biz.</h1>
+    <p>
+      This is my test portfolio site. This is my test portfolio site. This is my
+      test portfolio site. This is my test portfolio site. This is my test
+      portfolio site. This is my test portfolio site.
+    </p>
+    <img src="images/golden-retriever.png" alt="A Golden Retriever puppy" />
