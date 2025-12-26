@@ -5,9 +5,9 @@
   let { children } = $props();
 
   let pages = [
-    { url: '/', title: 'Home' },
-    { url: '/projects', title: 'Projects' },
-    { url: '/contact', title: 'Contact' },
+    { url: './', title: 'Home' },
+    { url: './projects', title: 'Projects' },
+    { url: './contact', title: 'Contact' },
     { url: 'https://github.com/vizdevbiz', title: 'GitHub' },
   ];
 </script>
