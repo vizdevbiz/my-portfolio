@@ -84,19 +84,9 @@ select {
   font: inherit;
 }
 
-img {
-  max-width: 90%;
-}
-
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-}
-
-article {
-  display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 3;
 }
 
 h2 {
