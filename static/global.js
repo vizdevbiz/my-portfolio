@@ -4,37 +4,6 @@ function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
-let pages = [
-  { url: '.', title: 'Home' },
-  { url: 'projects', title: 'Projects' },
-  { url: 'contact', title: 'Contact' },
-  { url: 'https://github.com/vizdevbiz', title: 'GitHub' },
-];
-
-let nav = document.createElement('nav');
-document.body.prepend(nav);
-
-for (let p of pages) {
-  let url = p.url;
-  let title = p.title;
-
-  // nav.insertAdjacentHTML("beforeend", /*html*/`<a href="${ url }">${ title }</a>` );
-  let a = document.createElement('a');
-  a.href = url;
-  a.textContent = title;
-
-  // a.classList.toggle("current", a.host === location.host && a.pathname === location.pathname);
-  if (a.host === location.host && a.pathname === location.pathname) {
-    a.classList.add('current');
-  }
-
-  if (a.host !== location.host) {
-    a.target = '_blank';
-  }
-
-  nav.append(a);
-}
-
 document.body.insertAdjacentHTML(
   'afterbegin',
   /*html*/ `
