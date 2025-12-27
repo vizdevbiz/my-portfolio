@@ -16,7 +16,7 @@
   {#each pages as p}
     <a
       href={p.url}
-      class:current={p.url === page.route.id}
+      class:current={p.url === '.' + page.route.id}
       target={p.url.startsWith('http') ? '_blank' : null}>{p.title}</a
     >
   {/each}
