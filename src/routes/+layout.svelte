@@ -10,6 +10,17 @@
     { url: './contact', title: 'Contact' },
     { url: 'https://github.com/vizdevbiz', title: 'GitHub' },
   ];
+  let localStorage = globalThis.localStorage ?? {};
+
+  let colorScheme = $state(localStorage.colorScheme ?? 'light dark');
+
+  let root = globalThis?.document?.documentElement;
+
+  $effect(() => root?.style.setProperty('color-scheme', colorScheme));
+
+  $effect(() => {
+    localStorage.colorScheme = colorScheme;
+  });
 </script>
 
 <nav>
@@ -21,6 +32,15 @@
     >
   {/each}
 </nav>
+
+<label class="color-scheme">
+  Theme:
+  <select bind:value={colorScheme}>
+    <option value="light dark">Automatic</option>
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+  </select>
+</label>
 
 {@render children()}
 
@@ -70,4 +90,11 @@ a:hover {
   border-bottom: 0.4em solid var(--color-accent);
   padding-bottom: 0em;
 } */
+
+  .color-scheme {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 80%;
+  }
 </style>
