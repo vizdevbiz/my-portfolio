@@ -30,17 +30,32 @@
       value: count,
     }));
   });
+
+  let selectedYearIndex = $state(-1);
+
+  const selectedYear = $derived(
+    selectedYearIndex > -1 ? pieData[selectedYearIndex].label : null
+  );
+
+  const filteredByYear = $derived(
+    filteredProjects.filter((p) => {
+      if (selectedYear) {
+        return p.year === selectedYear;
+      }
+      return true;
+    })
+  );
 </script>
 
 <svelte:head>
   <title>Projects</title>
 </svelte:head>
 <h1>{projects.length} Projects</h1>
-<Pie data={pieData} />
+<Pie data={pieData} bind:selectedIndex={selectedYearIndex} />
 <input
   type="search"
   bind:value={query}
   aria-label="Search projects"
   placeholder="🔍 Search projects..."
 />
-<Projects data={filteredProjects} />
+<Projects data={filteredByYear} />
