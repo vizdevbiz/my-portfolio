@@ -5,16 +5,31 @@
 
   import * as d3 from 'd3';
 
-  let rolledData = d3.rollups(
-    projects,
-    (v) => v.length,
-    (d) => d.year
+  let query = $state('');
+
+  const filteredProjects = $derived(
+    projects.filter((p) => {
+      if (query) {
+        let values = Object.values(p).join('\n').toLowerCase();
+        return values.includes(query.toLowerCase());
+      }
+
+      return true;
+    })
   );
 
-  let pieData = rolledData.map(([year, count]) => ({
-    label: year,
-    value: count,
-  }));
+  const pieData = $derived.by(() => {
+    const rolledData = d3.rollups(
+      filteredProjects,
+      (v) => v.length,
+      (d) => d.year
+    );
+
+    return rolledData.map(([year, count]) => ({
+      label: year,
+      value: count,
+    }));
+  });
 </script>
 
 <svelte:head>
@@ -22,4 +37,10 @@
 </svelte:head>
 <h1>{projects.length} Projects</h1>
 <Pie data={pieData} />
-<Projects data={projects} />
+<input
+  type="search"
+  bind:value={query}
+  aria-label="Search projects"
+  placeholder="🔍 Search projects..."
+/>
+<Projects data={filteredProjects} />

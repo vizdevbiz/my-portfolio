@@ -3,13 +3,13 @@
 
   let { data = [] } = $props();
 
-  let sliceGenerator = d3.pie().value((d) => d.value);
-  let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+  const sliceGenerator = d3.pie().value((d) => d.value);
+  const arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-  let arcData = sliceGenerator(data);
-  let arcs = arcData.map((d) => arcGenerator(d));
+  const arcData = $derived(sliceGenerator(data));
+  const arcs = $derived(arcData.map((d) => arcGenerator(d)));
 
-  let colors = d3.scaleOrdinal(d3.schemePaired);
+  const colors = d3.scaleOrdinal(d3.schemePaired);
 </script>
 
 <div class="container">
